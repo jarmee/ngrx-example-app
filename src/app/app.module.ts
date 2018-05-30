@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CommentSectionModule } from './comment-section/comment-section.module';
 import * as fromComment from './shared/comment.reducer';
 import { reducers, AppState } from './shared/reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 export const REDUCER_TOKEN = new InjectionToken<
   ActionReducerMap<AppState>
@@ -17,6 +18,9 @@ export const REDUCER_TOKEN = new InjectionToken<
   imports: [
     BrowserModule,
     StoreModule.forRoot(REDUCER_TOKEN),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25
+    }),
     CommentSectionModule
   ],
   providers: [
