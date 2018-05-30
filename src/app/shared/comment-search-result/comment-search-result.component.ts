@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Comment } from '../comment/comment.model';
+import { AppState } from '../reducers';
+import { Store } from '@ngrx/store';
+import { DeleteCommentAction } from '../comment.actions';
 
 @Component({
   selector: 'eml-comment-search-result',
@@ -7,21 +10,12 @@ import { Comment } from '../comment/comment.model';
   styleUrls: ['./comment-search-result.component.css']
 })
 export class CommentSearchResultComponent {
-  commentList: Comment[] = [];
-
   @Input()
-  set comments(comments: Comment[]) {
-    this.commentList = comments;
-  }
+  comments: Comment[] = [];
 
-  get comments(): Comment[] {
-    return this.commentList.reverse().slice(0, 3);
-  }
-
-  @Output()
-  deleted: EventEmitter<Comment> = new EventEmitter<Comment>();
+  constructor(private store: Store<AppState>) {}
 
   onCommentDeleted(comment: Comment) {
-    this.deleted.emit(comment);
+    this.store.dispatch(new DeleteCommentAction(comment));
   }
 }

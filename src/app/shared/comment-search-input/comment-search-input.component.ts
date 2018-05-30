@@ -1,5 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Comment } from '../comment/comment.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../reducers';
+import { FilterCommentsAction } from '../comment.actions';
 
 @Component({
   selector: 'eml-comment-search-input',
@@ -10,10 +13,9 @@ export class CommentSearchInputComponent {
   author: string = null;
   text: string = null;
 
-  @Output()
-  searchComment: EventEmitter<Comment> = new EventEmitter<Comment>();
+  constructor(private store: Store<AppState>) {}
 
   onKeyUp() {
-    this.searchComment.emit({ author: this.author, text: this.text});
+    this.store.dispatch(new FilterCommentsAction({ author: this.author, text: this.text}));
   }
 }

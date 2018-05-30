@@ -2,19 +2,19 @@
   <div class="row">
     <div class="col-8">
       <div class="row ml-1">
-        <eml-comment-counter [count]="comments?.length">Comments</eml-comment-counter>
+        <eml-comment-counter [count]="count$ | async">Comments</eml-comment-counter>
       </div>
       <div class="dropdown-divider"></div>
-      <eml-comment-list [comments]="comments" (deleted)="onCommentDeleted($event)"></eml-comment-list>
-      <eml-comment-input (commentCreated)="onCommentCreated($event)"></eml-comment-input>
+      <eml-comment-list [comments]="comments$ | async"></eml-comment-list>
+      <eml-comment-input></eml-comment-input>
     </div>
     <div class="col-3 offset-1">
       <div class="row ml-1">
-        <eml-comment-counter [count]="filteredComments?.length">Search</eml-comment-counter>
+        <eml-comment-counter [count]="filteredCount$ | async">Search</eml-comment-counter>
       </div>
       <div class="dropdown-divider"></div>
-      <eml-comment-search-input (searchComment)="onSearchComment($event)"></eml-comment-search-input>
-      <eml-comment-search-result [comments]="filteredComments" (deleted)="onCommentDeleted($event)"></eml-comment-search-result>
+      <eml-comment-search-input></eml-comment-search-input>
+      <eml-comment-search-result [comments]="filteredComments$ | async"></eml-comment-search-result>
     </div>
   </div>
 </div>

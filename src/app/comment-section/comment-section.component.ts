@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Comment } from '../shared/comment/comment.model';
 import { fakeComments } from '../test/data/comment';
+import { AppState } from '../shared/reducers';
+import { Store } from '@ngrx/store';
+import { getAll, getCount, getFiltered, getFilteredCount } from '../shared/comment.selector';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'eml-comment-section',
@@ -8,40 +12,15 @@ import { fakeComments } from '../test/data/comment';
   styleUrls: ['./comment-section.component.css']
 })
 export class CommentSectionComponent {
-  comments: Comment[] = fakeComments;
+  comments$: Observable<Comment[]>;
+  count$: Observable<number>;
+  filteredCount$: Observable<number>;
+  filteredComments$: Observable<Comment[]>;
 
-  filteredComments: Comment[] = this.comments;
-  search: Comment = {
-    author: null,
-    text: null
-  };
-
-  onSearchComment(search: Comment) {
-    this.search = search;
-    this.filteredComments = this.comments.filter((comment) => (
-      (comment.author.includes(search.author) || search.author === null)
-      && (comment.text.includes(search.text) || search.text === null)
-    ));
-  }
-
-  onCommentCreated(newComment: Comment) {
-    this.comments = [
-      ...this.comments,
-      newComment
-    ];
-    this.updateFilteredComments();
-  }
-
-  onCommentDeleted(deletedComment: Comment) {
-    const deletedIndex = this.comments.indexOf(deletedComment);
-    this.comments.splice(deletedIndex, 1);
-    this.updateFilteredComments();
-  }
-
-  private updateFilteredComments() {
-    this.filteredComments = this.comments.filter((comment) => (
-      (comment.author.includes(this.search.author) || this.search.author === null)
-      && (comment.text.includes(this.search.text) || this.search.text === null)
-    ));
+  constructor(private store: Store<AppState>) {
+    this.comments$ = this.store.select(getAll());
+    this.count$ = this.store.select(getCount());
+    this.filteredComments$ = this.store.select(getFiltered());
+    this.filteredCount$ = this.store.select(getFilteredCount());
   }
 }

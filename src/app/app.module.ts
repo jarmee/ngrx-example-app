@@ -1,15 +1,14 @@
+import { NgModule, InjectionToken } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-
+import { StoreRootModule, StoreModule, ActionReducerMap } from '@ngrx/store';
 import { AppComponent } from './app.component';
-import { CommentComponent } from './shared/comment/comment.component';
-import { StoreModule } from '@ngrx/store';
-import { reducers } from './shared/reducers';
-import { CommentListComponent } from './shared/comment-list/comment-list.component';
-import { SharedCommentModule } from './shared/shared-comment.module';
 import { CommentSectionModule } from './comment-section/comment-section.module';
+import * as fromComment from './shared/comment.reducer';
+import { reducers, AppState } from './shared/reducers';
 
+export const REDUCER_TOKEN = new InjectionToken<
+  ActionReducerMap<AppState>
+>('Registered Reducers');
 
 @NgModule({
   declarations: [
@@ -17,9 +16,15 @@ import { CommentSectionModule } from './comment-section/comment-section.module';
   ],
   imports: [
     BrowserModule,
+    StoreModule.forRoot(REDUCER_TOKEN),
     CommentSectionModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: REDUCER_TOKEN,
+      useValue: reducers
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
