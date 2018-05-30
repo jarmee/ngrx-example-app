@@ -1,5 +1,11 @@
 <div class="input-group" (keyup.enter)="onSubmit()">
-  <input class="form-control" type="text" [(ngModel)]="text" placeholder="add a comment"/>
+  <div class="input-group-prepend">
+    <input class="form-control" type="text" [(ngModel)]="author" placeholder="author" *ngIf="editAuthor; else showAuthor">
+    <ng-template #showAuthor>
+      <span class="input-group-text" id="basic-addon1" (click)="editAuthor=!editAuthor">{{author}}</span>
+    </ng-template>
+  </div>
+  <input class="form-control" type="text" [(ngModel)]="text" placeholder="add a comment" />
   <div class="input-group-append">
     <button class="btn btn-secondary" (click)="onSubmit()">Submit</button>
   </div>

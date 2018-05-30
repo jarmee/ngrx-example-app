@@ -7,13 +7,19 @@ import { Comment } from '../comment/comment.model';
   styleUrls: ['./comment-input.component.css']
 })
 export class CommentInputComponent {
+  editAuthor: boolean;
+  author = 'jarmee';
+
   text: string;
 
   @Output()
   commentCreated: EventEmitter<Comment> = new EventEmitter<Comment>();
 
   onSubmit() {
-    this.commentCreated.emit({author: 'Jari Möllenbernd', text: this.text});
-    this.text = null;
+    if (this.text && this.text.length > 0) {
+      this.commentCreated.emit({author: this.author, text: this.text});
+      this.text = null;
+      this.editAuthor = false;
+    }
   }
 }
