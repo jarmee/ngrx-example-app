@@ -1,3 +1,8 @@
-<div class="comment-list container">
-  <eml-comment *ngFor="let comment of comments" [comment]="comment"></eml-comment>
+<div class="comment-list container" *ngIf="comments?.length > 0; else nothingAvailable">
+  <eml-comment *ngFor="let comment of comments" [comment]="comment" (deleted)="onCommentDeleted($event)"></eml-comment>
 </div>
+<ng-template #nothingAvailable>
+  <div class="comment-list container">
+    Start a conversation....
+  </div>
+</ng-template>

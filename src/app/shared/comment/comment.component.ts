@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Comment } from './comment.model';
 
 @Component({
@@ -9,4 +9,11 @@ import { Comment } from './comment.model';
 export class CommentComponent  {
   @Input()
   comment: Comment;
+
+  @Output()
+  deleted: EventEmitter<Comment> = new EventEmitter<Comment>();
+
+  onClick() {
+    this.deleted.emit(this.comment);
+  }
 }

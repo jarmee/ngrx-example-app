@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Comment } from '../comment/comment.model';
 
 @Component({
@@ -16,5 +16,12 @@ export class CommentSearchResultComponent {
 
   get comments(): Comment[] {
     return this.commentList.reverse().slice(0, 3);
+  }
+
+  @Output()
+  deleted: EventEmitter<Comment> = new EventEmitter<Comment>();
+
+  onCommentDeleted(comment: Comment) {
+    this.deleted.emit(comment);
   }
 }

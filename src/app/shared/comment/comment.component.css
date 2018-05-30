@@ -6,3 +6,7 @@
 :host {
   border-bottom: 1px dotted #ccc;
 }
+
+.delete {
+  cursor: pointer;
+}

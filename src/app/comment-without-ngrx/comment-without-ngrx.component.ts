@@ -32,7 +32,16 @@ export class CommentWithoutNgrxComponent {
       ...this.comments,
       newComment
     ];
+    this.updateFilteredComments();
+  }
 
+  onCommentDeleted(deletedComment: Comment) {
+    const deletedIndex = this.comments.indexOf(deletedComment);
+    this.comments.splice(deletedIndex, 1);
+    this.updateFilteredComments();
+  }
+
+  private updateFilteredComments() {
     this.filteredComments = this.comments.filter((comment) => (
       (comment.author.includes(this.search.author) || this.search.author === null)
       && (comment.text.includes(this.search.text) || this.search.text === null)

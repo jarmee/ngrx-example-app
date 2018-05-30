@@ -5,7 +5,7 @@
         <eml-comment-counter [count]="comments?.length">Comments</eml-comment-counter>
       </div>
       <div class="dropdown-divider"></div>
-      <eml-comment-list [comments]="comments"></eml-comment-list>
+      <eml-comment-list [comments]="comments" (deleted)="onCommentDeleted($event)"></eml-comment-list>
       <eml-comment-input (commentCreated)="onCommentCreated($event)"></eml-comment-input>
     </div>
     <div class="col-3 offset-1">
@@ -14,7 +14,7 @@
       </div>
       <div class="dropdown-divider"></div>
       <eml-comment-search-input (searchComment)="onSearchComment($event)"></eml-comment-search-input>
-      <eml-comment-search-result [comments]="filteredComments"></eml-comment-search-result>
+      <eml-comment-search-result [comments]="filteredComments" (deleted)="onCommentDeleted($event)"></eml-comment-search-result>
     </div>
   </div>
 </div>

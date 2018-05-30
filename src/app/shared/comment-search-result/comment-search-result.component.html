@@ -1,5 +1,5 @@
 <div class="container" *ngIf="comments?.length > 0; else notfound">
-    <eml-comment *ngFor="let comment of comments" [comment]="comment"></eml-comment>
+    <eml-comment *ngFor="let comment of comments" [comment]="comment" (deleted)="onCommentDeleted($event)"></eml-comment>
 </div>
 <ng-template #notfound>
   Nothing found....
