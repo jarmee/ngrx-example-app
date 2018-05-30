@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Comment } from '../shared/comment/comment.model';
+import { fakeComments } from '../test/data/comment';
 
 @Component({
   selector: 'eml-comment-section',
@@ -7,11 +8,7 @@ import { Comment } from '../shared/comment/comment.model';
   styleUrls: ['./comment-section.component.css']
 })
 export class CommentSectionComponent {
-  comments: Comment[] = [
-    { author: 'Harry', text: 'Fuck you' },
-    { author: 'Jack', text: 'Fuck you' },
-    { author: 'Biatsch', text: 'Fuck you' },
-  ];
+  comments: Comment[] = fakeComments;
 
   filteredComments: Comment[] = this.comments;
   search: Comment = {
