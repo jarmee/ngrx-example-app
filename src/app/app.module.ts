@@ -8,7 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './shared/reducers';
 import { CommentListComponent } from './shared/comment-list/comment-list.component';
 import { SharedCommentModule } from './shared/shared-comment.module';
-import { CommentWithoutNgrxModule } from './comment-without-ngrx/comment-without-ngrx.module';
+import { CommentSectionModule } from './comment-section/comment-section.module';
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { CommentWithoutNgrxModule } from './comment-without-ngrx/comment-without
   ],
   imports: [
     BrowserModule,
-    CommentWithoutNgrxModule
+    CommentSectionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

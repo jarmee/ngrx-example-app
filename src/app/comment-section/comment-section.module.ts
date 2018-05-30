@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CommentWithoutNgrxComponent } from './comment-without-ngrx.component';
+import { CommentSectionComponent } from './comment-section.component';
 import { SharedCommentModule } from '../shared/shared-comment.module';
 
 @NgModule({
@@ -9,10 +9,10 @@ import { SharedCommentModule } from '../shared/shared-comment.module';
     SharedCommentModule
   ],
   declarations: [
-    CommentWithoutNgrxComponent
+    CommentSectionComponent
   ],
   exports: [
-    CommentWithoutNgrxComponent
+    CommentSectionComponent
   ]
 })
-export class CommentWithoutNgrxModule { }
+export class CommentSectionModule { }

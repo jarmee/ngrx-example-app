@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Comment } from '../shared/comment/comment.model';
 
 @Component({
-  selector: 'eml-comment-without-ngrx',
-  templateUrl: './comment-without-ngrx.component.html',
-  styleUrls: ['./comment-without-ngrx.component.css']
+  selector: 'eml-comment-section',
+  templateUrl: './comment-section.component.html',
+  styleUrls: ['./comment-section.component.css']
 })
-export class CommentWithoutNgrxComponent {
+export class CommentSectionComponent {
   comments: Comment[] = [
     { author: 'Harry', text: 'Fuck you' },
     { author: 'Jack', text: 'Fuck you' },
