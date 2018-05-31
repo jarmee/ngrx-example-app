@@ -3,6 +3,7 @@ import { Comment } from '../comment/comment.model';
 import { AppState } from '../reducers';
 import { Store } from '@ngrx/store';
 import { CreateCommentAction } from '../comment.actions';
+import { ChangeDetectionLogComponent } from '../changed-detection-log.component';
 
 @Component({
   selector: 'eml-comment-input',
@@ -10,13 +11,15 @@ import { CreateCommentAction } from '../comment.actions';
   styleUrls: ['./comment-input.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CommentInputComponent {
+export class CommentInputComponent extends ChangeDetectionLogComponent {
   editAuthor: boolean;
   author = 'jarmee';
 
   text: string;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) {
+    super('CommentInputComponent');
+  }
 
   onSubmit() {
     if (this.text && this.text.length > 0) {
