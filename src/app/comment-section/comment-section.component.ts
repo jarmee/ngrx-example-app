@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Comment } from '../shared/comment/comment.model';
 import { fakeComments } from '../test/data/comment';
+import { ChangeDetectionLogComponent } from '../shared/change-detection-log.component';
 
 @Component({
   selector: 'eml-comment-section',
   templateUrl: './comment-section.component.html',
   styleUrls: ['./comment-section.component.css']
 })
-export class CommentSectionComponent {
+export class CommentSectionComponent extends ChangeDetectionLogComponent {
   comments: Comment[] = fakeComments;
 
   filteredComments: Comment[] = this.comments;
@@ -15,6 +16,10 @@ export class CommentSectionComponent {
     author: null,
     text: null
   };
+
+  constructor() {
+    super('CommentSectionComponent');
+  }
 
   onSearchComment(search: Comment) {
     this.search = search;

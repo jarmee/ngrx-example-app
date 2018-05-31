@@ -1,12 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Comment } from '../comment/comment.model';
+import { ChangeDetectionLogComponent } from '../change-detection-log.component';
 
 @Component({
   selector: 'eml-comment-input',
   templateUrl: './comment-input.component.html',
   styleUrls: ['./comment-input.component.css']
 })
-export class CommentInputComponent {
+export class CommentInputComponent extends ChangeDetectionLogComponent {
   editAuthor: boolean;
   author = 'jarmee';
 
@@ -14,6 +15,10 @@ export class CommentInputComponent {
 
   @Output()
   commentCreated: EventEmitter<Comment> = new EventEmitter<Comment>();
+
+  constructor() {
+    super('CommentInputComponent');
+  }
 
   onSubmit() {
     if (this.text && this.text.length > 0) {
