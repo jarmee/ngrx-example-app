@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Comment } from '../comment/comment.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../reducers';
@@ -7,7 +7,8 @@ import { FilterCommentsAction } from '../comment.actions';
 @Component({
   selector: 'eml-comment-search-input',
   templateUrl: './comment-search-input.component.html',
-  styleUrls: ['./comment-search-input.component.css']
+  styleUrls: ['./comment-search-input.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CommentSearchInputComponent {
   author: string = null;
